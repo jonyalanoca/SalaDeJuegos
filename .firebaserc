@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "firecomplete-3cad5": {
+      "hosting": {
+        "testborrar123": [
+          "firecomplete-3cad5"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "firecomplete-3cad5"
+  }
+}

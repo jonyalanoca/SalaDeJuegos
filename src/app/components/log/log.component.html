@@ -1,0 +1,97 @@
+<div class="loginContainer">
+    <div class="card">
+      <input type="checkbox" class="chkDisplay" id="CHK_login_sign" #CheckDoor>
+      <div class="door">
+        <label class="boton boton__door__login" for="CHK_login_sign">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+          </svg>
+          &nbsp;<span>Ingresar</span>
+  
+        </label>
+        <label (click)="limpiar()" class="boton boton__door__Signin" for="CHK_login_sign">
+          <span>Registrarse</span> &nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+          </svg>
+        </label>
+      </div>
+      <div class="login">
+        <div class="login__title">Ingresar</div>
+        <div class="login__form">
+          <input class="inputText" type="text" placeholder="Email" [(ngModel)]="usuario.email">
+          <input class="inputText" type="password" placeholder="Contraceña" [(ngModel)]="usuario.pass">
+        </div>
+        <div>
+          <button class="boton" (click)="logIn()">Entrar</button>
+        </div>
+        <div class="lineaContainer">
+          <div class="linea"></div> &nbsp; o &nbsp;<div class="linea"></div>
+        </div>
+        <div>
+          <button class=" boton__google" (click)="logInGoogle()">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd"
+                d="M12.037 21.998a10.313 10.313 0 0 1-7.168-3.049 9.888 9.888 0 0 1-2.868-7.118 9.947 9.947 0 0 1 3.064-6.949A10.37 10.37 0 0 1 12.212 2h.176a9.935 9.935 0 0 1 6.614 2.564L16.457 6.88a6.187 6.187 0 0 0-4.131-1.566 6.9 6.9 0 0 0-4.794 1.913 6.618 6.618 0 0 0-2.045 4.657 6.608 6.608 0 0 0 1.882 4.723 6.891 6.891 0 0 0 4.725 2.07h.143c1.41.072 2.8-.354 3.917-1.2a5.77 5.77 0 0 0 2.172-3.41l.043-.117H12.22v-3.41h9.678c.075.617.109 1.238.1 1.859-.099 5.741-4.017 9.6-9.746 9.6l-.215-.002Z"
+                clip-rule="evenodd" />
+            </svg>
+            &nbsp;<span>Entrar con Google</span>
+          </button>
+        </div>
+      </div>
+  
+      <div class="login">
+        <div class="login">
+          <div class="login__title">Registro</div>
+  
+          <form class="login__form" [formGroup]="controlForm" (ngSubmit)="registrar()">
+            <div>
+              <input class="inputText" type="text" placeholder="Email" formControlName="email">
+              <div class="errorMessage"
+                *ngIf="controlForm.get('email')?.hasError('required') && controlForm.get('email')?.touched">
+                El email es requerido
+              </div>
+              <div class="errorMessage"
+                *ngIf="controlForm.get('email')?.hasError('email') && controlForm.get('email')?.touched">
+                El formato del email no es válido
+              </div>
+            </div>
+            <div>
+              <input class="inputText" type="password" placeholder="Contraseña" formControlName="pass" #passwordInput>
+              <div class="errorMessage"
+                *ngIf="controlForm.get('pass')?.hasError('required') && controlForm.get('pass')?.touched">
+                La contraseña es requerida
+              </div>
+              <div class="errorMessage"
+                *ngIf="controlForm.get('pass')?.hasError('minlength') && controlForm.get('pass')?.touched">
+                Debe tener 6 caracteres como mínimo
+              </div>
+            </div>
+  
+            <div>
+              <input class="inputText" type="password" (input)="resetValidator()" placeholder="Repetir Contraceña"
+                formControlName="passRep" #passwordInputRep>
+              <div class="errorMessage" *ngIf="passValid">
+                Las contraceñas deben coincidir
+              </div>
+            </div>
+            <div class="seePwd">
+              <input type="checkbox" id="AUTH_REGISTRAR_INP_VERPASS"
+                (change)="togglePasswordVisibility(passwordInput, passwordInputRep)" #VerPass>
+              <label for="AUTH_REGISTRAR_INP_VERPASS">Mostrar contraceña</label>
+            </div>
+  
+            <div>
+              <button class="boton" type="submit">Validar e ingresar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+  
+    </div>
+  </div>
