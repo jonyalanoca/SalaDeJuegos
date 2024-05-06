@@ -40,18 +40,7 @@
     gap: 1rem;
   }
   
-  .boton {
-    padding: .5rem 3rem;
-    width: max-content;
-    margin: auto;
-    border: none;
-  
-    background: rgb(70, 158, 182);
-    background: linear-gradient(90deg, rgba(0, 97, 168, 1) 0%, rgba(70, 158, 182, 1) 100%);
-    color: white;
-    cursor: pointer;
-    border-radius: 25px;
-  }
+
   
   .inputText {
     border: none;

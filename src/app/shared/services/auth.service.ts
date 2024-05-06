@@ -10,35 +10,43 @@ import { Common,estado } from '../common/common.component';
 })
 export class AuthService extends Common {
     public userData: any;
+    public isLoged: boolean =true;
+    public userEmail: string | null | undefined = null;
     constructor(
-        private Auth: AngularFireAuth, //Servicio de firebase
-        private router: Router,        //Ruteos
-        private ngZone: NgZone         //Asegurar que el codigo se ejecute dentro de angular
+        private Auth: AngularFireAuth, // Servicio de firebase
+        private router: Router,        // Ruteos
+        private ngZone: NgZone         // Asegurar que el código se ejecute dentro de Angular
     ) {
         super();
-        //Se ejecutar cada vez que se cree un componente, verifica el estado del servicio 
+        // Se ejecuta cada vez que se cree un componente, verifica el estado del servicio 
         this.Auth.authState.subscribe(user => {
             if (user) {
                 this.userData = user;
                 localStorage.setItem('user', JSON.stringify(this.userData));
+
             } else {
                 localStorage.removeItem('user');
+
             }
-        })
-        this.Auth.onAuthStateChanged(function(user) {
+        });
+    
+        this.Auth.onAuthStateChanged((user) => {
             if (user) {
-                router.navigate(['dashboard']);
+                this.router.navigate(['dashboard']);
+                this.isLoged = true;
             } else {
                 localStorage.removeItem("user");
-                router.navigate(['log']);
+                this.router.navigate(['log']);
+                this.isLoged = false;
             }
-          });
+        });
     }
 
     loginEmailPass(usuario :Usuario) {
         return this.Auth.signInWithEmailAndPassword(usuario.email, usuario.pass)
             .then(userCredential => {
                 this.userData = userCredential.user;
+                this.userEmail = usuario.email;
                 this.Observador();
             })
             .catch((error:Error) => {
@@ -47,7 +55,7 @@ export class AuthService extends Common {
     }
     loginWithGoogle(){
         return this.Auth.signInWithPopup(new GoogleAuthProvider())
-        .then(()=>this.Observador())
+        .then((result)=>{this.userEmail = result.user?.email; this.Observador()})
         .catch((error:Error)=>{
             this.popup(estado.dangger, 'No se pudo conectar con GoogleAcount \n'+error.message );
 

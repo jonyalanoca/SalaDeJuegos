@@ -10,9 +10,9 @@
     </div>
     <ul>
         <li><a href="#">Acerca de</a></li>
-        <li><a href="#">Ingresar</a></li>
-        <li><a href="#">Registrar</a></li>
-        <li><button (click)="out()">Salir</button></li>
+        <li *ngIf="!isLoged"><a href="#">Ingresar</a></li>
+        <li>Hola {{userName}}</li>
+        <li *ngIf="isLoged"><button class="boton" (click)="out()">Salir</button></li>
 
     </ul>
     <div class="hamburger" #mobileNav>
@@ -26,7 +26,7 @@
         <li><a href="#">Acerca de</a></li>
         <li><a href="#">Ingresar</a></li>
         <li><a href="#">Registrar</a></li>
-        <li><button (click)="out()">Salir</button></li>
+        <li><button class="boton" (click)="out()">Salir</button></li>
 
     </ul>
 </div>

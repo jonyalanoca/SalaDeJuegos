@@ -2,7 +2,7 @@
 :root{
     --color-text: #000000;
     --color-background: #E4E4F7;
-    --color-background: #02080B;
+    --color-background: #101B1E;
 
     --color-primary:#192c8c;
     --color-secondary:#cdf4f0;
@@ -17,6 +17,18 @@
     height: 100vh;
   font-family: var(--font-head);
 
+}
+.boton {
+  padding: .5rem 3rem;
+  width: max-content;
+  margin: auto;
+  border: none;
+
+  background: rgb(70, 158, 182);
+  background: linear-gradient(90deg, rgba(0, 97, 168, 1) 0%, rgba(70, 158, 182, 1) 100%);
+  color: white;
+  cursor: pointer;
+  border-radius: 25px;
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
