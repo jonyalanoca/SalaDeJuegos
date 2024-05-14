@@ -1,0 +1,50 @@
+<div class="juegoContainer">
+    <div class="indicador">
+        VS
+    </div>
+    <figure class="imagenCointainer">
+        <div class="opacidadContainer">
+            {{superHeroData1.powerstats.power}}
+            <h3 class="hero_title">{{superHeroData1.name}} ({{superHeroData1.biography.fullName}})</h3>
+            <p class="horo_power" *ngIf="!estadoHeroe">Poder {{superHeroData1.powerstats.power}}</p>
+            <div *ngIf="estadoHeroe">
+                <button class="boton"
+                    (click)="comprobarMayor(superHeroData2.powerstats.power,superHeroData1.powerstats.power)">
+                    Mayor
+                </button>
+                <button class="boton"
+                    (click)="comprobarMenor(superHeroData2.powerstats.power ,superHeroData1.powerstats.power)">
+                    Menor
+                </button>
+                <button class="boton"
+                    (click)="comprobarigual(superHeroData2.powerstats.power ,superHeroData1.powerstats.power)">
+                    Iguales
+                </button>
+            </div>
+        </div>
+        <img [src]="superHeroData1.images.lg">
+        <button></button>
+    </figure>
+    <figure class="imagenCointainer">
+        <div class="opacidadContainer">
+            {{superHeroData2.powerstats.power}}
+            <h3 class="hero_title">{{superHeroData2.name}} ({{superHeroData2.biography.fullName}})</h3>
+            <p class="horo_power" *ngIf="estadoHeroe">Poder {{superHeroData2.powerstats.power}}</p>
+            <div *ngIf="!estadoHeroe">
+                <button class="boton"
+                    (click)="comprobarMayor(superHeroData1.powerstats.power ,superHeroData2.powerstats.power)">
+                    Mayor
+                </button>
+                <button class="boton"
+                    (click)="comprobarMenor(superHeroData1.powerstats.power ,superHeroData2.powerstats.power)">
+                    Menor
+                </button>
+                <button class="boton"
+                    (click)="comprobarigual(superHeroData1.powerstats.power ,superHeroData2.powerstats.power)">
+                    Iguales
+                </button>
+            </div>
+        </div>
+        <img [src]="superHeroData2.images.lg">
+    </figure>
+</div>

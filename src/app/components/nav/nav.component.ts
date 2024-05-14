@@ -11,10 +11,10 @@ export class NavComponent {
   @ViewChild('mobileNav') mobileNav!: ElementRef;
   @ViewChild('navbar') navbar!: ElementRef;
   public isLoged: boolean = true;
-  public userName: any = "";
+
+  public usuario: any;
   constructor(private Auth: AuthService) {
     this.isLoged = this.Auth.isLoged;
-    this.getNameUser();
   }
   toggleNav(): void {
     this.navbar.nativeElement.classList.toggle("active");
@@ -23,8 +23,5 @@ export class NavComponent {
   out() {
     this.Auth.logout();
   }
-  getNameUser(){
-    debugger;
-    this.userName=this.Auth.userEmail;
-  }
+  
 }

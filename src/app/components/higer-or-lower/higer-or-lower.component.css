@@ -1,0 +1,55 @@
+.juegoContainer{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.imagenCointainer{
+    position: relative;
+    flex: 1;
+    padding: 0;
+    margin: 0;
+}
+.imagenCointainer>img{
+    width: 100%;
+    
+    object-fit: cover;
+    top:0;
+}
+.indicador{
+    position: absolute;
+    left: 50%;
+    color: white;
+    top: 50%;
+    height: 5rem;
+    width: 5rem;
+    transform: translate(-50%,-50%);
+    background-image: linear-gradient(90deg, rgba(0, 97, 168, 1) 0%, rgba(70, 158, 182, 1) 100%);
+    line-height: 5rem;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 50%;
+    z-index: 100;
+}
+.opacidadContainer{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.705);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.hero_title{
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+
+}
+.horo_power{
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}

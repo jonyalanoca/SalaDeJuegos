@@ -11,7 +11,7 @@ import { Common,estado } from '../common/common.component';
 export class AuthService extends Common {
     public userData: any;
     public isLoged: boolean =true;
-    public userEmail: string | null | undefined = null;
+    public usuario:any;
     constructor(
         private Auth: AngularFireAuth, // Servicio de firebase
         private router: Router,        // Ruteos
@@ -33,6 +33,8 @@ export class AuthService extends Common {
         this.Auth.onAuthStateChanged((user) => {
             if (user) {
                 this.router.navigate(['dashboard']);
+                this.usuario=this.Auth.currentUser;
+                console.log(this.usuario);
                 this.isLoged = true;
             } else {
                 localStorage.removeItem("user");
@@ -46,7 +48,6 @@ export class AuthService extends Common {
         return this.Auth.signInWithEmailAndPassword(usuario.email, usuario.pass)
             .then(userCredential => {
                 this.userData = userCredential.user;
-                this.userEmail = usuario.email;
                 this.Observador();
             })
             .catch((error:Error) => {
@@ -55,7 +56,7 @@ export class AuthService extends Common {
     }
     loginWithGoogle(){
         return this.Auth.signInWithPopup(new GoogleAuthProvider())
-        .then((result)=>{this.userEmail = result.user?.email; this.Observador()})
+        .then(()=>this.Observador())
         .catch((error:Error)=>{
             this.popup(estado.dangger, 'No se pudo conectar con GoogleAcount \n'+error.message );
 
